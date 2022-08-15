@@ -46,7 +46,22 @@ likeButton.addEventListener('click', () => {
             updatedLike.push(plural);
             existingLike.textContent = updatedLike.join(' ');
         }
+        // TO-DO = add sorting functionality
     }
+});
+
+// comments functionality
+const commentList = document.querySelector('#list');
+const commentForm = document.querySelector('#comment-form');
+const commentInput = document.querySelector('#comment-input');
+commentForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    // add comment to list
+    newComment = document.createElement('p');
+    newComment.textContent = commentInput.value;
+    commentList.appendChild(newComment);
+    // reset form input
+    commentInput.value = '';
 });
 
 // counter functionality
