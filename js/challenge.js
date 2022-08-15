@@ -26,24 +26,26 @@ minusButton.addEventListener('click', () => {
 const likeButton = document.querySelector('#heart');
 const likeList = document.querySelector('ul.likes');
 likeButton.addEventListener('click', () => {
-    const existingLike = likeList.querySelector(`li#like-count-${counterVal}`);
-    if (!existingLike) {
-        const newLike = document.createElement('li');
-        newLike.id = `like-count-${counterVal}`;
-        newLike.textContent = `${counterVal} has been liked 1 time`;
-        likeList.appendChild(newLike);
-    } else {
-        // split existing like line for manipulation
-        const existingLikeSplit = existingLike.textContent.split(' ');
-        let plural = existingLikeSplit.pop();
-        let likeCount = parseInt(existingLikeSplit.pop());
-        likeCount += 1;                         // add 1 to like count
-        if (plural.length < 5) {plural += 's'}  // add 's' to 'time' if needed
-        // set like line to updated string
-        const updatedLike = existingLikeSplit;
-        updatedLike.push(likeCount);
-        updatedLike.push(plural);
-        existingLike.textContent = updatedLike.join(' ');
+    if (!pause) {
+        const existingLike = likeList.querySelector(`li#like-count-${counterVal}`);
+        if (!existingLike) {
+            const newLike = document.createElement('li');
+            newLike.id = `like-count-${counterVal}`;
+            newLike.textContent = `${counterVal} has been liked 1 time`;
+            likeList.appendChild(newLike);
+        } else {
+            // split existing like line for manipulation
+            const existingLikeSplit = existingLike.textContent.split(' ');
+            let plural = existingLikeSplit.pop();
+            let likeCount = parseInt(existingLikeSplit.pop());
+            likeCount += 1;                         // add 1 to like count
+            if (plural.length < 5) {plural += 's'}  // add 's' to 'time' if needed
+            // set like line to updated string
+            const updatedLike = existingLikeSplit;
+            updatedLike.push(likeCount);
+            updatedLike.push(plural);
+            existingLike.textContent = updatedLike.join(' ');
+        }
     }
 });
 
